@@ -340,10 +340,12 @@ import home2 from '../assets/home2.png';
 import home3 from '../assets/home3.png';
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 
 const ImageSlider = () => {
   const navigate = useNavigate();
-
+const activeUser=useSelector((state)=>state.user.user)
   // Slider settings
   const settings = {
     dots: true,
@@ -356,6 +358,13 @@ const ImageSlider = () => {
     arrows: false,
   };
 
+const handleNavigate=()=>{
+  if(activeUser==null){
+   return  toast.warn('Please login')
+  }
+  navigate('/feedback')
+}
+   
   return (
     <section className="flex flex-col-reverse md:flex-row items-center justify-between px-6 md:px-12 py-16 bg-gradient-to-r from-green-50 to-white min-h-screen">
       
@@ -369,7 +378,7 @@ const ImageSlider = () => {
           Where every client's voice shapes your success. Engage, collect feedback, and elevate your business.
         </p>
         <button
-          onClick={() => navigate('/feedback')}
+          onClick={handleNavigate}
           className="group flex items-center space-x-3 bg-green-700 text-white px-8 py-4 rounded-xl shadow-lg hover:bg-green-600 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-300 focus:ring-offset-2"
         >
           <span className="font-medium">Rate Us</span>
