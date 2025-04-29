@@ -33,4 +33,14 @@ const CreateFeedback=async(req,res)=>{
 
 }
 
-module.exports={CreateFeedback}
+
+const GetAllfeedbacks=async(req,res)=>{
+
+  const feedbacks=await Feedback.find().populate('userId')
+  
+  res.status(200).json({message:'all feedbacks',feedbacks})
+
+
+}
+
+module.exports={CreateFeedback,GetAllfeedbacks}

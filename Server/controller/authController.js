@@ -20,6 +20,15 @@ const user=new User({
 
 await user.save()
 
+const token=jwt.sign({_id:user._id,email:user.email},process.env.USER_SECRETKEY,{expiresIn:'1d'})
+res.cookie('token',token,{
+    httpOnly: false,
+    secure:true ,
+    sameSite: 'none',
+    maxAge: 24 * 60 * 60 * 1000,
+
+})
+
 res.status(200).json({status:true,message:'user successfully registered',user})
 
 
@@ -51,7 +60,7 @@ if(!user){
 
     })
     
-res.status(200).json({message:'login successful'})
+res.status(200).json({message:'login successful',user})
 }
 
 
