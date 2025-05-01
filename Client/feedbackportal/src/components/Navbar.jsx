@@ -6,10 +6,12 @@ import { FaRegUserCircle } from "react-icons/fa";
 import axiosInstance from '../utils/axiosInstance';
 import { setactiveUser, setlogoutUser } from '../features/auth/userSlice';
 import { toast } from 'react-toastify';
+import UploadModal from './UploadModal';
 function Navbar() {
     const navigate=useNavigate()
     const dispatch=useDispatch()
     const[dropdown,setDropdown]=useState(false)
+    const[showModal,setShowModal]=useState(false)
     const activeUser=useSelector((state)=>state.user.user)
     console.log('activeUser',activeUser);
     const handleDropdown=()=>{
@@ -25,6 +27,11 @@ function Navbar() {
       localStorage.removeItem('persist:user');
       toast.success(response.data.message)
     
+    }
+
+    const handleModal=(e)=>{
+      e.preventDefault(); 
+      setShowModal(!showModal)
     }
   return (
     <div>
@@ -50,12 +57,21 @@ function Navbar() {
     </button>
   ) : (
     <button
-      type="button"
-      className="text-green-900 font-medium rounded-lg text-4xl px-4 py-2"
-      onClick={handleDropdown}
-    >
-      <FaRegUserCircle />
-    </button>
+  type="button"
+  className="text-green-900 font-medium rounded-full text-4xl px-2 py-2 focus:outline-none"
+  onClick={handleDropdown}
+>
+  {activeUser?.profileImage ? (
+    <img
+      src={activeUser.profileImage ||""}
+      alt="Profile"
+      className="w-10 h-10 rounded-full object-cover border border-gray-300"
+    />
+  ) : (
+    <FaRegUserCircle />
+  )}
+</button>
+
   )}
 
   {dropdown && (
@@ -76,12 +92,12 @@ function Navbar() {
             Dashboard
           </a>
         </li>
-        <li>
+        <li onClick={handleModal}>
           <a
-            href="#"
+            href=""
             className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
           >
-            Settings
+            Upload
           </a>
         </li>
         <li>
@@ -104,6 +120,16 @@ function Navbar() {
       </div>
     </div>
   )}
+{showModal && (
+        <UploadModal
+          isOpen={showModal}
+          onClose={() => setShowModal(false)}
+          onUpload={(formData) => {
+            // handle formData upload here
+            // close modal after upload
+          }}
+        />
+      )}
 </div>
 
 

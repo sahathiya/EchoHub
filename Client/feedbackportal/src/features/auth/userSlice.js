@@ -10,9 +10,14 @@ const userSlice =createSlice({
         },
         setlogoutUser:(state,action)=>{
             state.user=null
-        }
+        },
+        setProfileImage(state, action) {
+            if (state.user) {
+              state.user.profileImage = action.payload;
+            }
     }
+}
 })
 
-export const{setactiveUser,setlogoutUser}=userSlice.actions
+export const{setactiveUser,setlogoutUser,setProfileImage}=userSlice.actions
 export default userSlice.reducer

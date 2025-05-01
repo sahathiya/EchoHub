@@ -97,15 +97,44 @@ function Login() {
   const navigate=useNavigate()
   const[showpassword,setShowpassword]=useState(false)
 
-  const handleSubmit=async(values)=>{
-console.log("values",values);
-const response=await axiosInstance.post('/api/auth/login',values)
-const user=response.data.user
-dispatch(setactiveUser(user))
-toast.success(response.data.message)
-navigate('/')
+//   const handleSubmit=async(values)=>{
+// console.log("values",values);
+// const response=await axiosInstance.post('/api/auth/login',values)
+// const user=response.data.user
+// dispatch(setactiveUser(user))
+// toast.success(response.data.message)
+// if(user.role==='admin'){
 
+// navigate('/sidebar')
+// }else{
+//   navigate('/')
+// }
+
+
+//   }
+
+
+const handleSubmit = async (values) => {
+  try {
+    console.log("values", values);
+    const response = await axiosInstance.post('/api/auth/login', values);
+    const user = response.data.user;
+
+    dispatch(setactiveUser(user));
+    toast.success(response.data.message);
+
+    if (user.role === 'admin') {
+      navigate('/');
+    } else {
+      navigate('/');
+    }
+
+  } catch (error) {
+    toast.error(error.response?.data?.message || "Login failed");
+    console.error("Login error:", error);
   }
+};
+
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
       <div className="bg-white shadow-2xl rounded-lg overflow-hidden max-w-4xl w-full flex flex-col md:flex-row">
