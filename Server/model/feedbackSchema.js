@@ -5,6 +5,7 @@ const feedbackSchema=new mongoose.Schema({
     reviewLabel:{type:String,enum:['Terrible','Bad','Ok','Good','Excellent']},
     starRating:{ type: Number, required: true, min: 1, max: 5 },
     message:{type:String,required:true},
+    response:{type:String},
     createdAt:{type: Date,default: Date.now,}
 
 })
