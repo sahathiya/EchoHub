@@ -64,8 +64,8 @@ const handleAdminLogout=async()=>{
   console.log('resposne of admin logout',response);
   
   dispatch(setlogoutUser())
-  localStorage.removeItem('persist:user');
   toast.success(response.data.message)
+  navigate('/')
 
 }
   return (

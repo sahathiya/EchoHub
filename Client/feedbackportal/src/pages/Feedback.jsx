@@ -138,7 +138,7 @@
 
 
 import { FaStar, FaRegStar } from "react-icons/fa";
-import ratingimg from '../assets/rating.png';
+import ratingimg from '../assets/emotional-feedback.png';
 import Navbar from "../components/Navbar";
 import { Formik, Form, ErrorMessage, Field } from "formik";
 import * as Yup from 'yup';

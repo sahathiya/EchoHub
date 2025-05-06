@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchFeedbacksAdmin, fetchUsers } from "./adminActions";
+import { fetchFeedbacksAdmin, fetchUsers,filterFeedbackByDate,filterFeedbackByRating } from "./adminActions";
 const adminSlice=createSlice({
     name:'admin',
     initialState:{users:[],feedbacks:[],  loading: false,error: null,},
@@ -33,6 +33,37 @@ const adminSlice=createSlice({
                 state.error = action.payload;
               })
 
+
+
+              .addCase(filterFeedbackByRating.pending,(state,action)=>{
+                state.loading = true;
+                state.error = null;
+              })
+              .addCase(filterFeedbackByRating.fulfilled,(state,action)=>{
+                state.loading = false;
+                state.feedbacks = action.payload;
+              })
+              .addCase(filterFeedbackByRating.rejected,(state,action)=>{
+                state.loading = false;
+                state.error = action.payload;
+              })
+
+
+
+
+              
+              .addCase(filterFeedbackByDate.pending,(state,action)=>{
+                state.loading = true;
+                state.error = null;
+              })
+              .addCase(filterFeedbackByDate.fulfilled,(state,action)=>{
+                state.loading = false;
+                state.feedbacks = action.payload;
+              })
+              .addCase(filterFeedbackByDate.rejected,(state,action)=>{
+                state.loading = false;
+                state.error = action.payload;
+              })
     }
 })
 

@@ -106,7 +106,7 @@ dispatch(fetchUsers())
 
 
           {users.map((user,index)=>(
- <tbody>
+ <tbody key={user._id}>
  <tr className="bg-white border-b hover:bg-gray-50">
    <td className="p-4">
     {index+1}

@@ -181,7 +181,7 @@ import {
 } from "react-icons/fa";
 import { HiOutlineChat } from "react-icons/hi";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchFeedbacksAdmin } from "../features/admin/adminActions";
+import { fetchFeedbacksAdmin, filterFeedbackByDate, filterFeedbackByRating } from "../features/admin/adminActions";
 import axiosInstance from "../utils/axiosInstance";
 import { HiSparkles } from "react-icons/hi2";
 // Star rating display
@@ -207,11 +207,25 @@ const ReviewCard = ({
 
 <>
 <div className="flex flex-col sm:flex-row gap-4 p-4 sm:p-6 bg-white shadow-md rounded-xl mb-6">
-    <img
+   
+
+
+
+                    {user.userId.profileImage ? (
+                    <div className="w-16 h-16 rounded-full overflow-hidden">
+                     <img
       src={user.userId.profileImage}
       alt={user.userId.name}
       className="w-16 h-16 rounded-full object-cover mx-auto sm:mx-0"
     />
+                    </div>
+                  ) : (
+                    <div className="w-16 h-16 bg-green-100 rounded-full  flex items-center justify-center text-black font-bold text-2xl">
+                      {user.userId.name
+                        ? user.userId.name.slice(0, 1)
+                        : user.userId.email.slice(0, 1)}
+                    </div>
+                  )}
     <div className="flex-1">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
         <h3 className="font-semibold text-lg">{user.userId.name}</h3>
@@ -291,10 +305,17 @@ const ReviewCard = ({
 
 // Main component
 export default function Reviews() {
+  
   const [activeReviewId, setActiveReviewId] = useState(null);
   const [responseText, setResponseText] = useState("");
   const [reviewCount, setReviewCount] = useState();
   const [avgReview, setAvgReview] = useState();
+
+
+  const [showCalendar, setShowCalendar] = useState(false);
+  const [showRatingDropdown, setShowRatingDropdown] = useState(false);
+  const [selectedDate, setSelectedDate] = useState('');
+  const [selectedRating, setSelectedRating] = useState('');
  
   const dispatch = useDispatch();
   const feedbacks = useSelector((state) => state.admin.feedbacks);
@@ -315,17 +336,41 @@ export default function Reviews() {
   };
 
   useEffect(() => {
-    const fetch = async () => {
-      const response = await axiosInstance.get(`/api/admin/yearlycount`);
-      setReviewCount(response.data.totalReviews);
-      setAvgReview(response.data.averageRating);
-    };
-
-    fetch();
+  
     dispatch(fetchFeedbacksAdmin());
   }, [dispatch]);
+const handleAll=()=>{
+  dispatch(fetchFeedbacksAdmin());
+  setShowRatingDropdown(false);
+        setShowCalendar(false); 
+}
+// Fetch by Rating
+useEffect(() => {
+ dispatch(filterFeedbackByRating(selectedRating))
+}, [selectedRating,dispatch]);
 
 
+useEffect(()=>{
+dispatch(filterFeedbackByDate(selectedDate))
+},[selectedDate,dispatch])
+
+// Fetch by Date
+// useEffect(() => {
+//   const fetchByDate = async () => {
+//     if (!selectedDate) return;
+//     try {
+//       const response = await axiosInstance.get(`/api/admin/reviews`, {
+//         params: { date: selectedDate },
+//       });
+//       console.log('Response of sort by date:', response.data);
+//       setReviews(response.data);
+//     } catch (error) {
+//       console.error('Error fetching by date:', error);
+//     }
+//   };
+
+//   fetchByDate();
+// }, [selectedDate]);
 
   const handleGenerate=async(message)=>{
 
@@ -341,10 +386,61 @@ export default function Reviews() {
     <div className="max-w-6xl mx-auto px-4 py-10">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl sm:text-3xl font-bold">Reviews</h2>
-        <FaBell className="text-xl text-gray-500" />
+        {/* <FaBell className="text-xl text-gray-500" /> */}
+
+       <div className="flex space-x-10">
+       <button 
+       className="px-4 py-2 bg-green-900 text-white rounded"
+       onClick={handleAll}
+      >
+            All
+            </button>
+       <button 
+       className="px-4 py-2 bg-green-900 text-white rounded"
+       onClick={() => {
+        setShowRatingDropdown(!showRatingDropdown);
+        setShowCalendar(false); // hide other option
+      }}
+      >
+            Sort by Rating
+            </button>
+       <button
+       className="px-4 py-2 bg-green-900 text-white rounded"
+        onClick={() => {
+          setShowCalendar(!showCalendar);
+          setShowRatingDropdown(false); // hide other option
+        }}
+       >
+        Sort by Date
+        </button>
+       </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8 text-center">
+      {showCalendar && (
+        <input
+          type="date"
+          value={selectedDate}
+          onChange={(e) => setSelectedDate(e.target.value)}
+          className="border rounded p-2 w-48"
+        />
+      )}
+
+      {showRatingDropdown && (
+        <select
+          value={selectedRating}
+          onChange={(e) => setSelectedRating(e.target.value)}
+          className="border rounded p-2 w-48"
+        >
+          <option value="">Select Rating</option>
+          {[1, 2, 3, 4, 5].map((rating) => (
+            <option key={rating} value={rating}>
+              {rating}
+            </option>
+          ))}
+        </select>
+      )}
+
+      {/* <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8 text-center">
         <div className="bg-white p-4 sm:p-6 rounded-lg shadow">
           <p className="text-lg font-semibold text-gray-700">Total Reviews</p>
           <p className="text-3xl font-bold text-green-600">{reviewCount ?? 0}</p>
@@ -355,7 +451,7 @@ export default function Reviews() {
             {avgReview ? avgReview.toFixed(1) : "0.0"}
           </p>
         </div>
-      </div>
+      </div> */}
 
       {feedbacks && feedbacks.length > 0 ? (
         feedbacks.map((review) => (
