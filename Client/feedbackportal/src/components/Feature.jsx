@@ -10,16 +10,16 @@ function Feature() {
         
         
         <div className="w-full md:w-1/2 text-center md:text-left space-y-6">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 leading-tight">
+          <h1 className=" font-nunito   text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 leading-tight">
             About Us
           </h1>
-          <p className="text-gray-600 text-base sm:text-lg md:text-xl leading-relaxed">
+          <p className=" font-nunito   text-gray-600 text-base sm:text-lg md:text-xl leading-relaxed">
             Lorem Ipsum is simply dummy text of the printing and typesetting industry.
             <br />
             It has been the industry's standard dummy text ever since the 1500s...
           </p>
           <div className="flex justify-center md:justify-start">
-            <button className="mt-4 px-8 py-3 bg-green-700 hover:bg-green-600 text-white font-semibold rounded-full shadow-md hover:shadow-xl transition-all duration-300">
+            <button className="font-nunito   mt-4 px-8 py-3 bg-green-700 hover:bg-green-600 text-white font-semibold rounded-full shadow-md hover:shadow-xl transition-all duration-300">
               Learn More
             </button>
           </div>

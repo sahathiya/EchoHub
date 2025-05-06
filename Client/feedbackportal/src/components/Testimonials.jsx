@@ -36,7 +36,7 @@ function Testimonials() {
   return (
     <section className="py-16 bg-gray-50">
       <div className="max-w-7xl mx-auto text-center px-6">
-        <h2 className="text-4xl font-bold text-gray-800 mb-4">
+        <h2 className=" font-nunito text-4xl font-bold text-gray-800 mb-4">
           Let’s Hear What Our Clients Have to Say About Us!
         </h2>
         <p className="text-gray-600 mb-12 max-w-3xl mx-auto">
@@ -76,10 +76,10 @@ function Testimonials() {
                       </div>
                     )}
 
-                    <h3 className="mt-4 text-lg font-semibold text-gray-800">
+                    <h3 className=" font-nunito mt-4 text-lg font-semibold text-gray-800">
                       {item.userId.name}
                     </h3>
-                    <p className="text-gray-700 mt-4 text-sm leading-relaxed line-clamp-6 text-center">
+                    <p className=" font-nunito text-gray-700 mt-4 text-sm leading-relaxed line-clamp-6 text-center">
                       {item.message}
                     </p>
                   </div>

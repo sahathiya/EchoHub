@@ -37,7 +37,7 @@ const ImageSlider = () => {
     <section className="flex flex-col-reverse md:flex-row items-center justify-between px-6 md:px-20 py-12 bg-gray-100 min-h-screen">
       {/* Text Content */}
       <div className="text-center md:text-left md:w-1/2">
-        <h1 className="text-3xl md:text-5xl font-bold text-gray-800 mb-6">
+        <h1 className="font-nunito  text-3xl md:text-5xl font-bold text-gray-800 mb-6">
           EchoHub: <br />
           <span className="text-green-700">Listen better. Grow faster.</span>
         </h1>

@@ -34,7 +34,7 @@ const dispatch=useDispatch()
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0  backdrop-blur-md z-50 flex justify-center items-center transition-opacity">
+    <div className=" font-nunito fixed inset-0  backdrop-blur-md z-50 flex justify-center items-center transition-opacity">
       <div className="bg-white rounded-2xl shadow-2xl p-6 w-full max-w-md mx-4 relative animate-fade-in">
         <button
           onClick={onClose}

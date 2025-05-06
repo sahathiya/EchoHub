@@ -206,7 +206,7 @@ const ReviewCard = ({
  
 
 <>
-<div className="flex flex-col sm:flex-row gap-4 p-4 sm:p-6 bg-white shadow-md rounded-xl mb-6">
+<div className="font-nunito   flex flex-col sm:flex-row gap-4 p-4 sm:p-6 bg-white shadow-md rounded-xl mb-6">
    
 
 
@@ -386,7 +386,7 @@ dispatch(filterFeedbackByDate(selectedDate))
 
   }
   return (
-    <div className="max-w-6xl mx-auto px-4 py-10">
+    <div className=" font-nunito   max-w-6xl mx-auto px-4 py-10">
      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
   <h2 className="text-2xl sm:text-3xl font-bold">Reviews</h2>
 

@@ -2,7 +2,7 @@ import axios from 'axios';
 
 
 const axiosInstance = axios.create({
-  baseURL: 'https://echohub-d780.onrender.com', 
+  baseURL: 'http://localhost:4000', 
   withCredentials: true,
 
   

@@ -44,7 +44,7 @@ const userNotifications = notifications?.filter(
     {/* Slide-in Modal */}
     <div
       className={clsx(
-        "fixed top-0 right-0 w-full sm:w-96 h-full bg-white shadow-lg z-50 transition-transform duration-300 ease-in-out",
+        "font-nunito    fixed top-0 right-0 w-full sm:w-96 h-full bg-white shadow-lg z-50 transition-transform duration-300 ease-in-out",
         {
           "translate-x-0": isOpen,
           "translate-x-full": !isOpen,
@@ -79,7 +79,7 @@ const userNotifications = notifications?.filter(
           Response from admin
         </span>
         <h3 className="font-semibold mt-2">{note.message} :</h3>
-        <p className="text-sm text-gray-600 mt-1 line-clamp-4">:{note.userMessage}</p>
+        <p className="text-sm text-gray-600 mt-1 line-clamp-4">{note.userMessage}</p>
         <p className={`text-sm font-semibold mt-1 `}>{note.response}</p>
        
 

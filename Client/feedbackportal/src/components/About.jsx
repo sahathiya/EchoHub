@@ -28,7 +28,7 @@ export default function About() {
   return (
     <section className="py-16 bg-gray-50">
       <div className="max-w-7xl mx-auto px-6 text-center">
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-800">
+        <h2 className="font-nunito   text-3xl md:text-4xl font-bold text-gray-800">
           Manage your entire community<br/>
           <span className="text-green-700">in a single system</span>
         </h2>
@@ -42,8 +42,8 @@ export default function About() {
               <div className="bg-green-100 p-4 rounded-full animate-pulse">
                 <Icon className="text-green-600 w-8 h-8" />
               </div>
-              <p className="mt-4 text-3xl font-extrabold text-gray-800">{value}</p>
-              <p className="mt-1 text-gray-500">{label}</p>
+              <p className="mt-4 text-3xl font-extrabold text-gray-800 font-nunito">{value}</p>
+              <p className="  font-nunito mt-1 text-gray-500">{label}</p>
             </div>
           ))}
         </div>

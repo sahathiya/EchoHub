@@ -47,8 +47,8 @@ const navItems = [
   { label: "Dashboard", icon: Home ,link:'/'},
   { label: "Users", icon: FaUsers ,link:'/users'},
   { label: "Reviews", icon: MdOutlineReviews,link:'/reviews'},
-  // { label: "Purchasing", icon: ShoppingCart },
-  // { label: "Orders", icon: Package },
+  { label: "Settings", icon: Settings },
+  { label: "Help", icon: HelpCircle },
   // { label: "Pricing", icon: DollarSign },
   // { label: "Shipping", icon: Truck },
   // { label: "Plans", icon: Layers },
@@ -69,23 +69,22 @@ const handleAdminLogout=async()=>{
 
 }
   return (
-    <div className="flex">
+    <div className="flex font-nunito">
       <div
         className={`bg-[#e4eae7] min-h-screen flex flex-col justify-between transition-all duration-300 ${
           isOpen ? "w-52" : "w-16"
         }`}
       >
         <div>
-          {/* Top Logo + Toggle Button */}
+          
           <div className="flex items-center justify-between p-4">
             <div className="flex items-center gap-2">
-              {/* <div className="w-6 h-6 bg-green-900 rounded-full" ></div> */}
-              {/* <div className="flex items-center justify-between mb-8"> */}
-            {/* <Link to="/"> */}
-              <img src={logo} alt="EchoHub Logo" className="h-6" />
-            {/* </Link> */}
+              
             
-          {/* </div> */}
+              <img src={logo} alt="EchoHub Logo" className="h-6" />
+            
+            
+         
               {isOpen && <span className="text-lg font-semibold">EchoHub</span>}
             </div>
             <button onClick={() => setIsOpen(!isOpen)} className="lg:hidden">
@@ -95,7 +94,7 @@ const handleAdminLogout=async()=>{
           </div>
 
           {/* Navigation Items */}
-          <nav className="mt-4 flex flex-col gap-1">
+          <nav className="mt-4 flex flex-col gap-4">
             {navItems.map(({ label, icon: Icon, badge,link }) => (
               <div
 
