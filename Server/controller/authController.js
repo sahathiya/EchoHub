@@ -22,7 +22,7 @@ await user.save()
 
 const token=jwt.sign({_id:user._id,email:user.email},process.env.USER_SECRETKEY,{expiresIn:'1d'})
 res.cookie('token',token,{
-    httpOnly: false,
+    httpOnly: true,
     secure:true ,
     sameSite: 'none',
     maxAge: 24 * 60 * 60 * 1000,
@@ -85,7 +85,7 @@ const UserLogout=async(req,res)=>{
     
     try {
         res.clearCookie('token', {
-          httpOnly: false,
+          httpOnly: true,
           secure: true,
           sameSite: 'none',
         });

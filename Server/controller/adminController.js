@@ -5,7 +5,7 @@ const { GoogleGenerativeAI } = require('@google/generative-ai');
 
 
 const AllFeedbacks=async(req,res)=>{
-  const feedbacks=await Feedback.find().populate('userId')
+  const feedbacks=await Feedback.find().populate('userId','name profileImage').sort({ createdAt: -1 })
 
   res.status(200).json({message:'all feedbacks',feedbacks})
 
@@ -54,9 +54,9 @@ const AllUsers=async(req,res)=>{
 
 
 const   FilterByStarRating=async(req,res)=>{
-  const {starRating}=req.body
+  const {starRating}=req.query
 
-  const feedbacks=await Feedback.find({starRating:starRating}).sort({createdAt:-1})
+  const feedbacks=await Feedback.find({starRating:starRating}).sort({createdAt:-1}).populate('userId', 'name profileImage')
 
   res.status(200).json({message:'based on starrating',feedbacks});
 
@@ -64,19 +64,7 @@ const   FilterByStarRating=async(req,res)=>{
 
 const SortFeedbackByDate = async (req, res) => {
   
-    // const { order } = req.query;
-
-    // // Default to descending (newest first) if no order is provided
-    // const sortOrder = order === 'asc' ? 1 : -1;
-
-    // const feedbacks = await Feedback.find().sort({ createdAt: sortOrder });
-
-    // res.status(200).json(feedbacks);
-
-
-
-
-    const { date } = req.body; // Expecting 'YYYY-MM-DD'
+const { date } = req.query; // Expecting 'YYYY-MM-DD'
 
     if (!date) {
       return res.status(400).json({ message: 'Date query parameter is required (format: YYYY-MM-DD).' });
@@ -91,8 +79,7 @@ const SortFeedbackByDate = async (req, res) => {
         $gte: selectedDate,
         $lt: nextDate
       }
-    }).sort({ createdAt: -1 }); // optional: sort newest first
-
+    }).sort({ createdAt: -1 }).populate('userId','name profileImage')
     res.status(200).json(feedbacks);
 
 };
@@ -111,7 +98,42 @@ if(!response){
   feedback.response=response
 
   await feedback.save()
-  
+
+  // Send socket notification to client
+  // const io = req.app.get('io');
+  // console.log('Emitting socket event');
+  // io.emit('feedback_response', {
+  //   feedbackId,
+  //   message: 'Admin responded to your feedback',
+  //   response
+  // });
+  const io = req.app.get('io');
+  const userSocketMap = req.app.get('userSocketMap');
+  const userId = feedback.userId.toString(); // get the user who submitted the feedback
+  const socketId = userSocketMap.get(userId);
+
+
+  const now = new Date();
+const formattedDate = now.toLocaleString('en-IN', {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric',
+  hour: '2-digit',
+  minute: '2-digit',
+  hour12: true,
+}); 
+  // if (socketId) {
+    console.log(`Sending feedback response to user ${userId} at socket ${socketId}`);
+    io.emit('feedback_response', {
+      feedbackId,
+      userId:feedback.userId,
+      userMessage:feedback.message,
+      message: 'Admin responded to your feedback',
+      response,
+       date:formattedDate
+    });
+  // }
+
 res.status(200).json({message:'response addedd successfully'})
 
 
