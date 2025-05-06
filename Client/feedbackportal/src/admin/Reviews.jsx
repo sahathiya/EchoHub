@@ -257,40 +257,43 @@ const ReviewCard = ({
 
       <p className="mt-2 text-gray-700 whitespace-pre-line">{user.message}</p>
 
-      <div className="flex flex-wrap gap-3 mt-4">
-        {!isInputVisible ? (
-          <button
-            onClick={() => setIsInputVisible(true)}
-            className="flex items-center gap-2 text-sm bg-gray-100 hover:bg-gray-200 px-3 py-1.5 rounded"
-          >
-            <HiOutlineChat /> Public Comment
-          </button>
-        ) : (
-          <div className="flex items-center gap-2">
-            <input
-              type="text"
-              value={responseText}
-              onChange={(e) => setResponseText(e.target.value)}
-              placeholder="Enter your response"
-              className="border rounded px-2 py-1 text-sm w-64"
-            />
-            <button
-              onClick={handleSubmit}
-              className="bg-green-700 text-white text-sm px-3 py-1.5 rounded hover:bg-green-600"
-            >
-              Submit
-            </button>
+      <div className="flex  sm:flex-row sm:items-center flex-wrap gap-3 mt-4">
+  {!isInputVisible ? (
+    <button
+      onClick={() => setIsInputVisible(true)}
+      className="flex items-center gap-2 text-sm bg-gray-100 hover:bg-gray-200 px-3 py-1.5 rounded w-fit"
+    >
+      <HiOutlineChat /> Public Comment
+    </button>
+  ) : (
+    <>
+      <input
+        type="text"
+        value={responseText}
+        onChange={(e) => setResponseText(e.target.value)}
+        placeholder="Enter your response"
+        className="border rounded px-2 py-1 text-sm w-full sm:w-64"
+      />
+
+      <button
+        onClick={handleSubmit}
+        className="bg-green-700 text-white text-sm px-3 py-1.5 rounded hover:bg-green-600 w-fit"
+      >
+        Submit
+      </button>
+
+      <button
+        onClick={handleGenerate}
+        className="bg-green-900 text-white text-sm px-3 py-1.5 rounded hover:bg-green-800 flex items-center gap-2 w-fit"
+      >
+        Generate <HiSparkles />
+      </button>
+    </>
+  )}
+</div>
 
 
-            <button
-              onClick={handleGenerate}
-             className="bg-green-900 text-white text-sm px-3 py-1.5 rounded hover:bg-green-800 flex items-center gap-2"
-            >
-              Generate <span>  <HiSparkles/></span>
-            </button>
-          </div>
-        )}
-      </div>
+
     </div>
   </div>
 
@@ -384,37 +387,39 @@ dispatch(filterFeedbackByDate(selectedDate))
   }
   return (
     <div className="max-w-6xl mx-auto px-4 py-10">
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl sm:text-3xl font-bold">Reviews</h2>
-        {/* <FaBell className="text-xl text-gray-500" /> */}
+     <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
+  <h2 className="text-2xl sm:text-3xl font-bold">Reviews</h2>
 
-       <div className="flex space-x-10">
-       <button 
-       className="px-4 py-2 bg-green-900 text-white rounded"
-       onClick={handleAll}
-      >
-            All
-            </button>
-       <button 
-       className="px-4 py-2 bg-green-900 text-white rounded"
-       onClick={() => {
+  <div className="flex flex-wrap gap-3">
+    <button 
+      className="px-4 py-2 bg-green-900 text-white rounded"
+      onClick={handleAll}
+    >
+      All
+    </button>
+
+    <button 
+      className="px-4 py-2 bg-green-900 text-white rounded"
+      onClick={() => {
         setShowRatingDropdown(!showRatingDropdown);
-        setShowCalendar(false); // hide other option
+        setShowCalendar(false);
       }}
-      >
-            Sort by Rating
-            </button>
-       <button
-       className="px-4 py-2 bg-green-900 text-white rounded"
-        onClick={() => {
-          setShowCalendar(!showCalendar);
-          setShowRatingDropdown(false); // hide other option
-        }}
-       >
-        Sort by Date
-        </button>
-       </div>
-      </div>
+    >
+      Sort by Rating
+    </button>
+
+    <button
+      className="px-4 py-2 bg-green-900 text-white rounded"
+      onClick={() => {
+        setShowCalendar(!showCalendar);
+        setShowRatingDropdown(false);
+      }}
+    >
+      Sort by Date
+    </button>
+  </div>
+</div>
+
 
       {showCalendar && (
         <input

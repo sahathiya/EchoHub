@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { FaRegUserCircle } from "react-icons/fa";
 import axiosInstance from '../utils/axiosInstance';
-import { setactiveUser, setlogoutUser, setNotifications } from '../features/auth/userSlice';
+import {setlogoutUser, setNotifications } from '../features/auth/userSlice';
 import { toast } from 'react-toastify';
 import { IoNotificationsOutline } from "react-icons/io5";
 import UploadModal from './UploadModal';

@@ -46,7 +46,7 @@ import { useNavigate } from "react-router-dom";
 const navItems = [
   { label: "Dashboard", icon: Home ,link:'/'},
   { label: "Users", icon: FaUsers ,link:'/users'},
-  { label: "Reviews", icon: MdOutlineReviews, badge: "02" ,link:'/reviews'},
+  { label: "Reviews", icon: MdOutlineReviews,link:'/reviews'},
   // { label: "Purchasing", icon: ShoppingCart },
   // { label: "Orders", icon: Package },
   // { label: "Pricing", icon: DollarSign },
@@ -101,7 +101,7 @@ const handleAdminLogout=async()=>{
 
                 key={label}
                 onClick={()=>navigate(`${link}`)}
-                className="relative group flex items-center px-4 py-2 hover:bg-white rounded-md cursor-pointer"
+                className="relative group flex items-center px-4 py-2 hover:text-green-900 rounded-md cursor-pointer"
               >
                 <Icon className="w-5 h-5 text-gray-700" />
                 {isOpen && <span className="ml-3 text-sm">{label}</span>}
@@ -110,11 +110,7 @@ const handleAdminLogout=async()=>{
                     {label}
                   </span>
                 )}
-                {badge && (
-                  <span className="ml-auto text-xs bg-green-900 text-white px-2 py-0.5 rounded-full">
-                    {badge}
-                  </span>
-                )}
+              
               </div>
             ))}
           </nav>
