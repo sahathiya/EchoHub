@@ -13,7 +13,7 @@ const app=express()
 const PORT=process.env.PORT
 app.use(cors(
     {
-        origin: "http://localhost:3000",
+        origin: "https://echo-hub-sahathiyas-projects.vercel.app/",
         credentials: true,
     }
 ))
@@ -34,7 +34,7 @@ mongoose.connect(process.env.MONGODB_URL)
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
-      origin: "http://localhost:3000",
+      origin: "https://echo-hub-sahathiyas-projects.vercel.app/",
       methods: ['GET', 'POST'],
       credentials: true,
     }
