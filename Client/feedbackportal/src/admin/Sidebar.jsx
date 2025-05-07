@@ -34,7 +34,7 @@ import {
   Settings,
   Menu,
 } from "lucide-react";
-import logo from '../assets/feedlogo.svg'
+import logo from '../assets/feedback48.png'
 import { MdOutlineReviews } from "react-icons/md";
 import { FaUsers } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
@@ -47,8 +47,8 @@ const navItems = [
   { label: "Dashboard", icon: Home ,link:'/'},
   { label: "Users", icon: FaUsers ,link:'/users'},
   { label: "Reviews", icon: MdOutlineReviews,link:'/reviews'},
-  { label: "Settings", icon: Settings },
-  { label: "Help", icon: HelpCircle },
+  { label: "Settings", icon: Settings,link:'/' },
+  { label: "Help", icon: HelpCircle ,link:'/'},
   // { label: "Pricing", icon: DollarSign },
   // { label: "Shipping", icon: Truck },
   // { label: "Plans", icon: Layers },
@@ -81,11 +81,11 @@ const handleAdminLogout=async()=>{
             <div className="flex items-center gap-2">
               
             
-              <img src={logo} alt="EchoHub Logo" className="h-6" />
+            {isOpen &&  <img src={logo} alt="EchoHub Logo" className="h-6" />} 
             
             
          
-              {isOpen && <span className="text-lg font-semibold">EchoHub</span>}
+              {isOpen && <span className="text-lg font-semibold text-green-700">EchoHub</span>}
             </div>
             <button onClick={() => setIsOpen(!isOpen)} className="lg:hidden">
   <Menu className="w-5 h-5 text-gray-600" />
@@ -131,17 +131,7 @@ const handleAdminLogout=async()=>{
             )}
           </div>
 
-          {/* Help and Settings */}
-          {/* <div className="mt-4 space-y-2">
-            <div className="flex items-center gap-2 text-sm text-gray-700 hover:bg-white p-2 rounded-md cursor-pointer">
-              <HelpCircle className="w-4 h-4" />
-              {isOpen && <span>Help</span>}
-            </div>
-            <div className="flex items-center gap-2 text-sm text-gray-700 hover:bg-white p-2 rounded-md cursor-pointer">
-              <Settings className="w-4 h-4" />
-              {isOpen && <span>Settings</span>}
-            </div>
-          </div> */}
+        
         </div>
       </div>
 
