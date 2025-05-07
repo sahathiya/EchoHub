@@ -64,7 +64,7 @@ const dispatch=useDispatch()
 
         <button
           onClick={handleUpload}
-          className="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition"
+          className="w-full bg-green-700 text-white py-2 rounded-lg hover:bg-green-600 transition"
         >
           Upload
         </button>
