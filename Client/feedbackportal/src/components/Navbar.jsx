@@ -143,14 +143,7 @@ useEffect(() => {
         <div className="font-medium truncate">{activeUser?.email}</div>
       </div>
       <ul className="py-2 text-sm text-gray-700 ">
-        <li>
-          <a
-            href="#"
-            className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-          >
-            Dashboard
-          </a>
-        </li>
+        
         <li onClick={handleModal}>
           <a
             href=""
@@ -159,14 +152,7 @@ useEffect(() => {
             Upload
           </a>
         </li>
-        <li onClick={()=>navigate('/notifications')}>
-          <a
-            href="#"
-            className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-          >
-            Notifications
-          </a>
-        </li>
+        
       </ul>
       <div className="py-2"
       onClick={handleSignout}>
