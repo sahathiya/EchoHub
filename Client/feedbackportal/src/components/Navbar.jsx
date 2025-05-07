@@ -50,7 +50,7 @@ function Navbar() {
 useEffect(() => {
   if (!activeUser?._id) return;
 
-  const socket = io('http://localhost:4000', {
+  const socket = io('https://echohub-d780.onrender.com', {
     query: { userId: activeUser._id }
   });
 
