@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react'
-import logo from '../assets/feedlogo.svg'
+import logo from '../assets/feedback48.png'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { FaRegUserCircle } from "react-icons/fa";

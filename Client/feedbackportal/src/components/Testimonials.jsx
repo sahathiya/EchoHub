@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchFeedbacks } from "../features/feedback/feedbackActions";
 import { FaStar, FaRegStar } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
+import { Pagination, A11y, Autoplay } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/navigation";
-
+import "swiper/css/a11y";
+import "swiper/css/autoplay";
+import "swiper/css/pagination";
 function StarRating({ rating }) {
   const stars = [];
 
@@ -34,7 +36,7 @@ function Testimonials() {
   if (loading) return <p>Loading feedbacks...</p>;
   if (error) return <p>Error: {error}</p>;
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-16 bg-green-50">
       <div className="max-w-7xl mx-auto text-center px-6">
         <h2 className=" font-nunito text-4xl font-bold text-gray-800 mb-4">
           Let’s Hear What Our Clients Have to Say About Us!
@@ -45,13 +47,12 @@ function Testimonials() {
           experience.
         </p>
 
-        <div className="px-4 py-10 md:px-8 lg:px-16 ">
+        <div className="px-4 py-10 md:px-8 lg:px-16">
           <Swiper
-            slidesPerView={1}
+            modules={[Pagination, A11y, Autoplay]}
             spaceBetween={20}
-            navigation
-            modules={[Navigation]}
-            className="mySwiper"
+            autoplay={{ delay: 1500 }}
+            pagination={{ clickable: true }}
             breakpoints={{
               640: { slidesPerView: 1 },
               768: { slidesPerView: 2 },
@@ -59,8 +60,8 @@ function Testimonials() {
             }}
           >
             {feedbacks.map((item) => (
-              <SwiperSlide key={item._id} className="flex justify-center">
-                <div className="w-full h-[420px] max-w-sm p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 bg-green-100 flex flex-col items-center justify-between">
+              <SwiperSlide key={item._id}>
+                <div className="w-full h-[420px] max-w-sm p-6 rounded-xl  hover:shadow-xl  bg-green-100 flex flex-col items-center justify-between transition-transform duration-500 hover:scale-105">
                   <div className="flex flex-col items-center">
                     {item.userId.profileImage ? (
                       <img

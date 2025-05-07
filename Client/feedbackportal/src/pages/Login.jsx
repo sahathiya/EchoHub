@@ -75,7 +75,7 @@
 
 
 import React, { useState } from 'react';
-import logo from '../assets/feedlogo.svg';
+import logo from '../assets/feedback48.png';
 import home4 from '../assets/home4.svg';
 import { Link, useNavigate } from 'react-router-dom';
 import { IoEyeOutline } from "react-icons/io5";
@@ -181,7 +181,7 @@ const handleSubmit = async (values) => {
                <ErrorMessage name="email" component="div" className="text-red-500 text-sm mt-1" />
             </div>
             
-           
+{/*            
            <div className="relative">
                     <label className="block text-sm font-medium text-gray-600">
                       Password
@@ -190,13 +190,13 @@ const handleSubmit = async (values) => {
                     name='password'
                       type={showpassword ? 'text' : 'password'}
                       placeholder="••••••••"
-                      className="mt-2 w-full p-3 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-900 focus:outline-none transition"
+                      className="mt-2 w-full py-2.5 px-3 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-900 focus:outline-none transition"
                     />
                      <ErrorMessage name="password" component="div" className="text-red-500 text-sm mt-1" />
                     <button
                       type="button"
                       onClick={() => setShowpassword(!showpassword)}
-                      className="absolute right-3 top-1/2 transform -translate-y-1/2 flex items-center text-gray-500"
+                      className="absolute top-[55%] right-3 -translate-y-1/2 cursor-pointer text-gray-500"
                     >
                       {showpassword ? (
                         <IoEyeOffOutline size={20} />
@@ -204,13 +204,40 @@ const handleSubmit = async (values) => {
                         <IoEyeOutline size={20} />
                       )}
                     </button>
-                  </div>
+                  </div> */}
+<div className="relative">
+  <label className="block text-sm font-medium text-gray-600">Password</label>
+
+  {/* Input wrapper for Field + eye icon */}
+  <div className="relative">
+    <Field
+      name="password"
+      type={showpassword ? 'text' : 'password'}
+      placeholder="••••••••"
+      className="mt-2 w-full py-2.5 px-3 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-900 focus:outline-none transition"
+    />
+
+    <button
+      type="button"
+      onClick={() => setShowpassword(!showpassword)}
+      className="absolute top-[55%] right-3 -translate-y-1/2 cursor-pointer text-gray-500"
+    >
+      {showpassword ? <IoEyeOffOutline size={20} /> : <IoEyeOutline size={20} />}
+    </button>
+  </div>
+
+  <ErrorMessage
+    name="password"
+    component="div"
+    className="text-red-500 text-sm mt-1"
+  />
+</div>
 
             {/* Submit */}
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full bg-green-900 text-white py-3 rounded-lg font-semibold shadow-md hover:bg-green-700 transition-colors duration-200"
+              className="w-full bg-green-700 text-white py-3 rounded-lg font-semibold shadow-md hover:bg-green-700 transition-colors duration-200"
             >
               Sign In
             </button>
@@ -218,7 +245,7 @@ const handleSubmit = async (values) => {
           
 <p className="text-lg text-gray-500 mt-2">
              Don't have an account?{' '}
-           <Link to={`/register`}> <span className="text-green-900 font-medium hover:underline">
+           <Link to={`/register`}> <span className="text-green-700 font-medium hover:underline">
                Sign up
             </span></Link>
           </p>
@@ -228,7 +255,7 @@ const handleSubmit = async (values) => {
           
         </div>
 
-        <div className="hidden md:flex md:w-1/2 bg-green-900 items-center justify-center">
+        <div className="hidden md:flex md:w-1/2 bg-green-700 items-center justify-center">
           <img
             src={home4}
             alt="Login Illustration"

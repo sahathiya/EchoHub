@@ -104,6 +104,7 @@ import Dashboard from "./admin/Dashboard";
 import Users from "./admin/Users";
 import Notifications from "./pages/Notifications";
 
+
 function App() {
   const activeUser = useSelector((state) => state.user.user);
 
@@ -117,6 +118,7 @@ function App() {
             <Route path="/register" element={<Registration />} />
             <Route path="/login" element={<Login />} />
             {/* <Route path="/feedback" element={<Feedback />} /> */}
+            
           </Routes>
         </div>
       
@@ -129,6 +131,7 @@ function App() {
 
             <Route path="/feedback" element={<Feedback />} />
             {/* <Route path="/notifications" element={<Notifications/>}/> */}
+           
           </Routes>
         </div>
       ):(
@@ -139,6 +142,7 @@ function App() {
             <Route path="/" element={<Dashboard />} />
             <Route path="/reviews" element={<Reviews />} />
             <Route path="/users" element={<Users/>}/>
+           
           </Routes>
         </div>
       </div>

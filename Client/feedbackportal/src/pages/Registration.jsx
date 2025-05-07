@@ -2,7 +2,7 @@
 
 
 import React, { useState } from 'react';
-import logo from '../assets/feedlogo.svg';
+import logo from '../assets/feedback48.png';
 import register from '../assets/register.svg';
 import { Link, useNavigate } from 'react-router-dom';
 import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
@@ -13,7 +13,7 @@ import { useDispatch } from 'react-redux';
 import { setactiveUser } from '../features/auth/userSlice';
 import { toast } from 'react-toastify';
 
-// ✅ Validation Schema
+
 const validationSchema = Yup.object({
   name: Yup.string().required('Name is required'),
   email: Yup.string().email('Invalid email').required('Email is required'),
@@ -97,52 +97,119 @@ toast.success(response.data.message)
 
                 {/* Password & Confirm Password */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="relative">
+                  {/* <div className="relative">
                     <label className="block text-sm font-medium text-gray-600">Password</label>
                     <Field
                       name="password"
                       type={showPassword ? 'text' : 'password'}
                       placeholder="••••••••"
-                      className="mt-2 w-full p-3 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-900 focus:outline-none transition"
+                      // className="mt-2 w-full p-3 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-900 focus:outline-none transition"
+                      className="mt-2 w-full py-2.5 px-3 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-900 focus:outline-none transition"
                     />
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500"
+                      // className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500"
+                     className="absolute top-[55%] right-3 -translate-y-1/2 cursor-pointer text-gray-500"
                     >
                       {showPassword ? <IoEyeOffOutline size={20} /> : <IoEyeOutline size={20} />}
                     </button>
                     <ErrorMessage name="password" component="div" className="text-red-500 text-sm mt-1" />
-                  </div>
+                  </div> */}
 
-                  <div className="relative">
+                  {/* <div className="relative bg-amber-50">
                     <label className="block text-sm font-medium text-gray-600">Confirm Password</label>
                     <Field
                       name="confirmPassword"
                       type={showCPassword ? 'text' : 'password'}
                       placeholder="••••••••"
                       className="mt-2 w-full p-3 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-900 focus:outline-none transition"
+                      // className="w-full   p-3  border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 pr-10"
                     />
                     <button
                       type="button"
                       onClick={() => setShowCPassword(!showCPassword)}
-                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500"
+                      className="absolute top-1/2 right-3 transform -translate-y-1/2 cursor-pointer text-gray-500"
                     >
-                      {showCPassword ? <IoEyeOffOutline size={20} /> : <IoEyeOutline size={20} />}
+                      {showCPassword ? <IoEyeOffOutline size={20}  /> : <IoEyeOutline size={20} />}
                     </button>
                     <ErrorMessage name="confirmPassword" component="div" className="text-red-500 text-sm mt-1" />
-                  </div>
+                  </div> */}
+
+
+<div className="relative">
+  <label className="block text-sm font-medium text-gray-600">Password</label>
+
+  <div className="relative">
+    <Field
+      name="password"
+      type={showPassword ? 'text' : 'password'}
+      placeholder="••••••••"
+      className="mt-2 w-full py-2.5 px-3 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-900 focus:outline-none transition"
+    />
+
+    <button
+      type="button"
+      onClick={() => setShowPassword(!showPassword)}
+      className="absolute top-[55%] right-3 -translate-y-1/2 cursor-pointer text-gray-500"
+    >
+      {showPassword ? <IoEyeOffOutline size={20} /> : <IoEyeOutline size={20} />}
+    </button>
+  </div>
+
+  <ErrorMessage
+    name="password"
+    component="div"
+    className="text-red-500 text-sm mt-1"
+  />
+</div>
+
+
+<div className="relative">
+  <label className="block text-sm font-medium text-gray-600">
+    Confirm Password
+  </label>
+
+  <div className="relative">
+    <Field
+      name="confirmPassword"
+      type={showCPassword ? 'text' : 'password'}
+      placeholder="••••••••"
+      className="mt-2 w-full py-2.5 px-3 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-900 focus:outline-none transition"
+    />
+
+    <button
+      type="button"
+      onClick={() => setShowCPassword(!showCPassword)}
+      className="absolute top-[55%] right-3 -translate-y-1/2 cursor-pointer text-gray-500"
+    >
+      {showCPassword ? <IoEyeOffOutline size={20} /> : <IoEyeOutline size={20} />}
+    </button>
+  </div>
+
+  <ErrorMessage
+    name="confirmPassword"
+    component="div"
+    className="text-red-500 text-sm mt-1"
+  />
+</div>
+
                 </div>
 
                 {/* Submit Button */}
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-green-900 text-white py-2 px-4 rounded hover:bg-green-800 transition"
+                  className="w-full bg-green-700 text-white py-2 px-4 rounded hover:bg-green-800 transition"
                 >
                   Register
                 </button>
-
+<p className="text-lg text-gray-500 mt-2">
+             Already have an account?{' '}
+           <Link to={`/login`}> <span className="text-green-700 font-medium hover:underline">
+               Sign in
+            </span></Link>
+          </p>
               </Form>
             )}
           </Formik>
