@@ -5,12 +5,12 @@ function Footer() {
     <div>
       
 
-<footer className="font-nunito bg-green-700
+<footer className="font-nunito bg-green-100
  ">
     <div className="mx-auto w-full max-w-screen-xl">
       <div className="grid grid-cols-2 gap-8 px-4 py-6 lg:py-8 md:grid-cols-4">
         <div>
-            <h2 className="mb-6 text-sm font-semibold  uppercase dark:text-white">Company</h2>
+            <h2 className="mb-6 text-sm font-semibold  uppercase dark:text-black">Company</h2>
             <ul className="text-gray-500 dark:text-gray-400 font-medium">
                 <li className="mb-4">
                     <a href="#" className=" hover:underline">About</a>
@@ -27,7 +27,7 @@ function Footer() {
             </ul>
         </div>
         <div>
-            <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Help center</h2>
+            <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase ">Help center</h2>
             <ul className="text-gray-500 dark:text-gray-400 font-medium">
                 <li className="mb-4">
                     <a href="#" className="hover:underline">Discord Server</a>
@@ -44,7 +44,7 @@ function Footer() {
             </ul>
         </div>
         <div>
-            <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Legal</h2>
+            <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase ">Legal</h2>
             <ul className="text-gray-500 dark:text-gray-400 font-medium">
                 <li className="mb-4">
                     <a href="#" className="hover:underline">Privacy Policy</a>
@@ -58,7 +58,7 @@ function Footer() {
             </ul>
         </div>
         <div>
-            <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Download</h2>
+            <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase ">Download</h2>
             <ul className="text-gray-500 dark:text-gray-400 font-medium">
                 <li className="mb-4">
                     <a href="#" className="hover:underline">iOS</a>
@@ -75,7 +75,7 @@ function Footer() {
             </ul>
         </div>
     </div>
-    <div className="px-4 py-6  dark:bg-green-700 md:flex md:items-center md:justify-between">
+    <div className="px-4 py-6  dark:bg-green-100 md:flex md:items-center md:justify-between">
         <span className="text-sm text-gray-500 dark:text-gray-300 sm:text-center">© 2023 <a href="https://flowbite.com/">EchoHub</a>. All Rights Reserved.
         </span>
         <div className="flex mt-4 sm:justify-center md:mt-0 space-x-5 rtl:space-x-reverse">
